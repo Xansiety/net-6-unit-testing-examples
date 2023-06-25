@@ -33,6 +33,29 @@ namespace TestingLibrary
             Assert.That(cliente.ClienteNombre, Does.StartWith("Xan"));
         }
 
+
+        [Test]
+        public void CrearNombreCompletoNUnit_DebeConcatenarElNombreRunAllAssert()
+        {
+            // Arrange
+            //Cliente cliente = new Cliente();
+
+            // Act
+            //string nombreCompleto = cliente.CrearNombreCompleto("Xan", "siety");
+            cliente.CrearNombreCompleto("Xan", "siety");
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(cliente.ClienteNombre, Is.EqualTo("Xan siety"));
+                Assert.AreEqual(cliente.ClienteNombre, "Xan siety");
+                Assert.That(cliente.ClienteNombre, Does.Contain("siety"));
+                Assert.That(cliente.ClienteNombre, Does.Contain("Siety").IgnoreCase);
+                Assert.That(cliente.ClienteNombre, Does.StartWith("Xan"));
+            });
+           
+        }
+
         [Test]
         public void ClienteNombre_DebeRetornarNull()
         {
