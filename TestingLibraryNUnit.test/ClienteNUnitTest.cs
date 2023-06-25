@@ -95,7 +95,24 @@ namespace TestingLibrary
 
             Assert.Throws<ArgumentException>(() => cliente.CrearNombreCompleto(null, "siety"));
             Assert.That(() => cliente.CrearNombreCompleto(null, "siety"), Throws.ArgumentException);
+        }
 
+        [Test]
+        public void GetClienteDetalleNUnit_DebeDevolverUnClienteBasico()
+        {
+            cliente.OrderTotal = 499;
+            var resultado = cliente.GetClienteDetalle();
+
+            Assert.That(resultado, Is.TypeOf<ClienteBasico>());
+        }
+
+        [Test]
+        public void GetClienteDetalleNUnit_DebeDevolverUnClientePremium()
+        {
+            cliente.OrderTotal = 501;
+            var resultado = cliente.GetClienteDetalle();
+
+            Assert.That(resultado, Is.TypeOf<ClientePremium>());
         }
 
 
