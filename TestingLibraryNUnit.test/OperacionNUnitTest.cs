@@ -37,6 +37,18 @@ namespace TestingLibrary
             Assert.That(resultado, Is.EqualTo(false));
         }
 
+
+        [Test]
+        [TestCase(3, ExpectedResult = false)]
+        [TestCase(5, ExpectedResult = true)]
+        [TestCase(7, ExpectedResult = false)]
+        public bool IsPairValueNUnit_DebeDevolverFalsoParam(int numero)
+        {
+            Operacion op = new Operacion();
+            return op.IsPairValue(numero);
+        }
+
+
         [Test]
         // se ejecutara 3 veces y se le pasaran los siguientes valores
         [TestCase(2, 100, "Hola")]
@@ -54,5 +66,22 @@ namespace TestingLibrary
             Assert.That(resultado, Is.EqualTo(true));
         }
 
+
+
+
+        [Test]
+        [TestCase(2.2, 1.2)] // 3.4
+        [TestCase(2.23, 1.24)] // 3.47
+        public void SumarDecimalNUnit_DebeRealizarLaSumaDeDosNumerosDecimales(double numero1, double numero2)
+        {
+            // Arrange
+            Operacion op = new Operacion(); 
+
+            // Act
+            double resultado = op.SumarDecimal(numero1, numero2);
+
+            // Assert - valor en un intervalo 3.3 hasta 3.5 -> 0.1 es lo que se le sumara o restara a 3.4
+            Assert.AreEqual(3.4, resultado, 0.1);
+        }
     }
 }
