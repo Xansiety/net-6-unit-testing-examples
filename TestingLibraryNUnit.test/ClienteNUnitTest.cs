@@ -5,11 +5,22 @@ namespace TestingLibrary
     [TestFixture]
     public class ClienteNUnitTest
     {
+        private Cliente cliente;
+
+        [SetUp] // este método se ejecutara por cada uno de los test
+        public void Setup()
+        {
+            // reutilizamos
+            cliente = new Cliente();
+        }
+
+
         [Test]
         public void CrearNombreCompletoNUnit_DebeConcatenarElNombre()
         {
             // Arrange
-            Cliente cliente = new Cliente();
+            //Cliente cliente = new Cliente();
+
             // Act
             //string nombreCompleto = cliente.CrearNombreCompleto("Xan", "siety");
             cliente.CrearNombreCompleto("Xan", "siety");
@@ -25,7 +36,7 @@ namespace TestingLibrary
         [Test]
         public void ClienteNombre_DebeRetornarNull()
         {
-            Cliente cliente = new Cliente();
+            //Cliente cliente = new Cliente();
 
             // evaluamos una propiedad
             Assert.IsNull(cliente.ClienteNombre);
