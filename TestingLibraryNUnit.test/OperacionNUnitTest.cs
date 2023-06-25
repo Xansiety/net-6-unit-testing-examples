@@ -40,7 +40,7 @@ namespace TestingLibrary
 
         [Test]
         [TestCase(3, ExpectedResult = false)]
-        [TestCase(5, ExpectedResult = true)]
+        [TestCase(5, ExpectedResult = false)]
         [TestCase(7, ExpectedResult = false)]
         public bool IsPairValueNUnit_DebeDevolverFalsoParam(int numero)
         {

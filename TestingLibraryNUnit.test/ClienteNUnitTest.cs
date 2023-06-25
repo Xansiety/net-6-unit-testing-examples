@@ -11,13 +11,15 @@ namespace TestingLibrary
             // Arrange
             Cliente cliente = new Cliente();
             // Act
-            string nombreCompleto = cliente.CrearNombreCompleto("Xan", "siety");
+            //string nombreCompleto = cliente.CrearNombreCompleto("Xan", "siety");
+            cliente.CrearNombreCompleto("Xan", "siety");
+
             // Assert
-            Assert.That(nombreCompleto, Is.EqualTo("Xan siety"));
-            Assert.AreEqual(nombreCompleto, "Xan siety");
-            Assert.That(nombreCompleto, Does.Contain("siety"));
-            Assert.That(nombreCompleto, Does.Contain("Siety").IgnoreCase);
-            Assert.That(nombreCompleto, Does.StartWith("Xan"));
+            Assert.That(cliente.ClienteNombre, Is.EqualTo("Xan siety"));
+            Assert.AreEqual(cliente.ClienteNombre, "Xan siety");
+            Assert.That(cliente.ClienteNombre, Does.Contain("siety"));
+            Assert.That(cliente.ClienteNombre, Does.Contain("Siety").IgnoreCase);
+            Assert.That(cliente.ClienteNombre, Does.StartWith("Xan"));
         }
 
         [Test]
