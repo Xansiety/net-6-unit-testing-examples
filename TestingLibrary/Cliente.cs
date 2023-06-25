@@ -2,6 +2,12 @@
 {
     public class Cliente
     {
-        public string CrearNombreCompleto(string Nombre, string Apellido) => Nombre + " " + Apellido;
+        public string ClienteNombre { get; set; }
+
+        public string CrearNombreCompleto(string Nombre, string Apellido)
+        {
+            ClienteNombre = Nombre + " " + Apellido;
+            return ClienteNombre;
+        }
     }
 }
