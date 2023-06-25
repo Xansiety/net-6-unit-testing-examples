@@ -41,5 +41,14 @@ namespace TestingLibrary
             // evaluamos una propiedad
             Assert.IsNull(cliente.ClienteNombre);
         }
+
+
+        [Test]
+        public void DescuentoEvaluacion_DebeRetornarUnIntervalo()
+        {
+            int descuento = cliente.Descuento;
+            Assert.That(descuento, Is.InRange(5, 24));
+        }
+
     }
 }

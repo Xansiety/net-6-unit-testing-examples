@@ -1,5 +1,5 @@
 ﻿// Ignore Spelling: Operacion Numeros
- 
+
 using NUnit.Framework;
 
 namespace TestingLibrary
@@ -94,6 +94,20 @@ namespace TestingLibrary
             List<int> resultados = op.getListaNumerosImpares(5, 10);
 
             Assert.That(resultados, Is.EquivalentTo(numerosImparesEsperados));
+
+            // otros métodos
+            Assert.AreEqual(numerosImparesEsperados, resultados);
+            Assert.That(resultados, Does.Contain(5));
+            Assert.Contains(5, resultados);
+            Assert.That(resultados, Is.Not.Empty); // validar que la lista no este vacía
+            Assert.That(resultados.Count, Is.EqualTo(3));
+            Assert.That(resultados, Has.No.Member(100));  //Buscar un elemento que no este en la lista
+            Assert.That(resultados, Is.Ordered.Ascending); // validar que estén ordenados: DEFAULT ASCENDING
+            Assert.That(resultados, Is.Unique); // Validar si el resultado se esta duplicando en la colección
+
         }
+
+
+
     }
 }
