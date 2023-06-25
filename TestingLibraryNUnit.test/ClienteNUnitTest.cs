@@ -53,7 +53,7 @@ namespace TestingLibrary
                 Assert.That(cliente.ClienteNombre, Does.Contain("Siety").IgnoreCase);
                 Assert.That(cliente.ClienteNombre, Does.StartWith("Xan"));
             });
-           
+
         }
 
         [Test]
@@ -72,6 +72,34 @@ namespace TestingLibrary
             int descuento = cliente.Descuento;
             Assert.That(descuento, Is.InRange(5, 24));
         }
+
+
+        [Test]
+        public void CrearNombreCompletoNUnit_NoDebeMostrarUnaExcepcion()
+        {
+            cliente.CrearNombreCompleto("Xan", "");
+            Assert.IsNotNull(cliente.ClienteNombre);
+            Assert.IsFalse(String.IsNullOrEmpty(cliente.ClienteNombre));
+        }
+
+
+        [Test]
+        public void ClienteNombreCompletoNUnit_DebeMostrarUnThrowExcepcion()
+        {
+            var exceptionDetalle = Assert.Throws<ArgumentException>(() => cliente.CrearNombreCompleto(null, "siety"));
+
+            Assert.AreEqual("El nombre esta en blanco", exceptionDetalle.Message);
+
+            Assert.That(() => cliente.CrearNombreCompleto(null, "siety"), Throws.ArgumentException.With.Message.EqualTo("El nombre esta en blanco"));
+
+
+            Assert.Throws<ArgumentException>(() => cliente.CrearNombreCompleto(null, "siety"));
+            Assert.That(() => cliente.CrearNombreCompleto(null, "siety"), Throws.ArgumentException);
+
+        }
+
+
+
 
     }
 }

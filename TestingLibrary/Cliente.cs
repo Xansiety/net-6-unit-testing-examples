@@ -7,6 +7,8 @@
 
         public string CrearNombreCompleto(string Nombre, string Apellido)
         {
+            if (String.IsNullOrWhiteSpace(Nombre)) throw new ArgumentException("El nombre esta en blanco");
+             
             ClienteNombre = Nombre + " " + Apellido;
             Descuento = 30;
             return ClienteNombre;
