@@ -16,6 +16,13 @@
         public bool Deposito(int monto)
         {
             _loggerGeneral.Message($"Esta depositando la cantidad de: {monto}");
+            _loggerGeneral.Message("Es otro texto");
+            _loggerGeneral.Message("Visita mi portfolio");
+
+            //Propiedades
+            _loggerGeneral.PrioridadLogger = 100;
+            var prioridad = _loggerGeneral.PrioridadLogger;
+
             balance += monto; ;
             return true;
         }
@@ -30,7 +37,7 @@
             }
 
             _loggerGeneral.Message($"No tiene suficiente saldo para retirar la cantidad de: {monto}");
-            return _loggerGeneral.LogBalanceDespuesRetiro(balance-monto);
+            return _loggerGeneral.LogBalanceDespuesRetiro(balance - monto);
         }
 
         public int GetBalance()

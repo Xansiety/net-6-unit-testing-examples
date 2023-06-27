@@ -109,7 +109,31 @@ namespace TestingLibrary
             Assert.That(resultado, Is.False);
         }
 
-        
+
+        [Test]
+        public void CuentaBancariaVerifyLogger_VerCuantasVecesSeEjecuta()
+        {
+            var loggerMocking = new Mock<ILoggerGeneral>();
+            CuentaBancaria cuentaBancaria = new CuentaBancaria(loggerMocking.Object);
+
+            cuentaBancaria.Deposito(100);
+
+            Assert.That(cuentaBancaria.GetBalance, Is.EqualTo(100));
+
+            // Verificar que se llame al método _loggerGeneral.Message 3 veces
+            loggerMocking.Verify(x => x.Message(It.IsAny<string>()), Times.Exactly(3));
+
+            // Verificar que al menos se ejecuto una vez un método 
+            loggerMocking.Verify(x => x.Message("Visita mi portfolio"), Times.AtLeastOnce);
+
+            // Verificar que una propiedad se setee al menos una vez
+            loggerMocking.VerifySet(x => x.PrioridadLogger = 100, Times.Once);
+
+            // Verificar que el get cuantas veces se aplica el get dentro del método
+            loggerMocking.VerifyGet(x => x.PrioridadLogger, Times.Once);
+             
+        }
+
 
     }
 }
