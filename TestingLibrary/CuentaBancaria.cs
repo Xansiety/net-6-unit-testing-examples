@@ -24,10 +24,13 @@
         {
             if (monto <= balance)
             {
+                _loggerGeneral.LogDatabase($"Esta retirando la cantidad de: {monto}");
                 balance -= monto;
-                return true;
+                return _loggerGeneral.LogBalanceDespuesRetiro(balance);
             }
-            return false;
+
+            _loggerGeneral.Message($"No tiene suficiente saldo para retirar la cantidad de: {monto}");
+            return _loggerGeneral.LogBalanceDespuesRetiro(balance-monto);
         }
 
         public int GetBalance()

@@ -50,5 +50,66 @@ namespace TestingLibrary
             Assert.IsTrue(resultado);
         }
 
+        [Test]
+        public void Retiro_DebeRetornarTrue()
+        {
+            var mocking = new Mock<ILoggerGeneral>();
+            CuentaBancaria cuentaBancaria = new CuentaBancaria(mocking.Object); // Se pasa el objeto
+        }
+
+        [Test]
+        [TestCase(200, 100)]
+        [TestCase(200, 150)]
+        public void Retiro_RetirarCorrecto_DebeRetornarTrue(
+                int balance, int retiro
+            )
+        {
+            var loggerMocking = new Mock<ILoggerGeneral>();
+
+            //llamar los métodos -> simular la operación -> NO EJECUTARLOS
+            loggerMocking.Setup(u => u.LogDatabase(It.IsAny<string>())).Returns(true); // Se le pasa cualquier string
+
+            // así indicamos que el valor de entrada(param) que recibe es mayor  a 0 It.Is<int>(x => x > 0))
+            loggerMocking.Setup(Setup => Setup.LogBalanceDespuesRetiro(It.Is<int>(x => x > 0))).Returns(true); // Se le pasa cualquier int
+
+
+            CuentaBancaria cuentaBancaria = new CuentaBancaria(loggerMocking.Object);
+
+            cuentaBancaria.Deposito(balance);
+
+            var resultado = cuentaBancaria.Retiro(retiro);
+
+            Assert.IsTrue(resultado);
+            Assert.That(resultado, Is.True);
+        }
+
+
+        [Test]
+        [TestCase(200, 300)]
+        [TestCase(200, 400)]
+        public void Retiro_RetirarInvalido_DebeRetornarFalse(
+                int balance, int retiro
+            )
+        {
+            var loggerMocking = new Mock<ILoggerGeneral>();
+
+            // así indicamos que el valor de entrada(param) que recibe es mayor  a 0 It.Is<int>(x => x > 0))
+            //loggerMocking.Setup(Setup => Setup.LogBalanceDespuesRetiro(It.Is<int>(x => x < 0))).Returns(false);
+
+            // validamos que el parámetro este dentro del min value hasta el -1
+            loggerMocking.Setup(Setup => Setup.LogBalanceDespuesRetiro(It.IsInRange<int>(int.MinValue, -1, Moq.Range.Inclusive))).Returns(false);
+
+            CuentaBancaria cuentaBancaria = new CuentaBancaria(loggerMocking.Object);
+
+            cuentaBancaria.Deposito(balance);
+
+            var resultado = cuentaBancaria.Retiro(retiro);
+
+            Assert.IsFalse(resultado);
+            Assert.That(resultado, Is.False);
+        }
+
+
+
     }
 }
