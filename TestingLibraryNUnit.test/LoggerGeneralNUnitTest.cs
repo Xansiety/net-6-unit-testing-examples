@@ -70,6 +70,25 @@ namespace TestingLibrary
 
             Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
             Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(10));
+
+
+            // Callback 
+            string textoTemporal = "xan";
+            int contador = 5;
+            loggerGeneralMock.Setup(x => x.LogDatabase(It.IsAny<string>()))
+                .Returns(true)
+                .Callback((string str) => str += textoTemporal); //caputrar el valor de retorno y reprocesarlos
+
+            loggerGeneralMock.Setup(x => x.LogDatabase(It.IsAny<string>()))
+                .Returns(true)
+                .Callback((string str) => contador++); //caputrar el valor de retorno y reprocesarlos
+
+
+            loggerGeneralMock.Object.LogDatabase("hola");
+
+            Assert.That(textoTemporal, Is.EqualTo("xan"));
+            Assert.That(contador, Is.EqualTo(6));
         }
+
     }
 }
