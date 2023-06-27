@@ -8,7 +8,12 @@
 
         string MessageConReturnString(string message);
 
+        // con parámetros de salida
         bool MessageConOutParameterReturnBool(string str, out string outputStr);
+
+        // con referencias
+        bool MessageConRefParameterReturnBool(ref Cliente cliente);
+
 
     }
 
@@ -44,6 +49,11 @@
             return true;
         }
 
+        public bool MessageConRefParameterReturnBool(ref Cliente cliente)
+        {
+            return true;
+        }
+
         public string MessageConReturnString(string message)
         {
             Console.WriteLine(message);
@@ -75,6 +85,11 @@
         }
 
         public bool MessageConOutParameterReturnBool(string str, out string outputStr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool MessageConRefParameterReturnBool(ref Cliente cliente)
         {
             throw new NotImplementedException();
         }

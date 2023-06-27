@@ -35,8 +35,24 @@ namespace TestingLibrary
             string parametroOut = "";
             var resultado = loggerGeneralMock.Object.MessageConOutParameterReturnBool("Xan", out parametroOut);
 
-            Assert.That(resultado, Is.True); 
+            Assert.That(resultado, Is.True);
 
+        }
+
+
+        [Test]
+        public void MessageConRefParameterReturnBool_DebeRetornarTrue()
+        {
+
+            var loggerGeneralMock = new Mock<ILoggerGeneral>();
+            Cliente cliente = new Cliente();
+            Cliente clienteNoUsado = new Cliente();
+
+            loggerGeneralMock.Setup(x => x.MessageConRefParameterReturnBool(ref cliente)).Returns(true);
+
+            Assert.IsTrue(loggerGeneralMock.Object.MessageConRefParameterReturnBool(ref cliente));
+             
+            Assert.IsFalse(loggerGeneralMock.Object.MessageConRefParameterReturnBool(ref clienteNoUsado));
         }
     }
 }
