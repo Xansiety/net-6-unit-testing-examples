@@ -5,6 +5,8 @@
         void Message(string message);
         bool LogDatabase(string message);
         bool LogBalanceDespuesRetiro(int balanceDespuesRetiro);
+
+        string MessageConReturnString(string message);
     }
 
     public class LoggerGeneral : ILoggerGeneral
@@ -32,6 +34,12 @@
         {
             Console.WriteLine(message);
         }
+
+        public string MessageConReturnString(string message)
+        {
+            Console.WriteLine(message);
+            return message.ToLower();
+        }
     }
 
 
@@ -55,6 +63,11 @@
         {
             // throw new NotImplementedException();
 
+        }
+
+        public string MessageConReturnString(string message)
+        {
+            return message;
         }
     }
 }
