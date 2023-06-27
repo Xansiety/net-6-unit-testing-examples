@@ -64,6 +64,10 @@ namespace TestingLibrary
             loggerGeneralMock.Setup(x => x.TipoLogger).Returns("warning");
             loggerGeneralMock.Setup(x => x.PrioridadLogger).Returns(10);
 
+            // para generar un error
+            //loggerGeneralMock.SetupAllProperties(); // es necesario añadir esta linea antes de sobre escribir las propiedades
+            //loggerGeneralMock.Object.PrioridadLogger = 100;
+
             Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
             Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(10));
         }
