@@ -21,5 +21,22 @@ namespace TestingLibrary
             Assert.That(resultado, Is.EqualTo(textoPrueba));
             Assert.True(resultado == textoPrueba);
         }
+
+        [Test]
+        public void MessageConOutParameterReturnBool_DebeRetornarTrue()
+        {
+
+            var loggerGeneralMock = new Mock<ILoggerGeneral>();
+            string textoPrueba = "hola";
+
+
+            loggerGeneralMock.Setup(Setup => Setup.MessageConOutParameterReturnBool(It.IsAny<string>(), out textoPrueba)).Returns(true);
+
+            string parametroOut = "";
+            var resultado = loggerGeneralMock.Object.MessageConOutParameterReturnBool("Xan", out parametroOut);
+
+            Assert.That(resultado, Is.True); 
+
+        }
     }
 }
