@@ -74,8 +74,8 @@
 
     public class LoggerGeneralFake : ILoggerGeneral
     {
-        public int PrioridadLogger { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string TipoLogger { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int PrioridadLogger { get; set; }
+        public string TipoLogger { get; set; }
 
         public bool LogBalanceDespuesRetiro(int balanceDespuesRetiro)
         {
@@ -97,12 +97,15 @@
 
         public bool MessageConOutParameterReturnBool(string str, out string outputStr)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            outputStr = "Hola" + str;
+            return true;
         }
 
         public bool MessageConRefParameterReturnBool(ref Cliente cliente)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return true;
         }
 
         public string MessageConReturnString(string message)
