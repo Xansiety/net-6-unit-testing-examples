@@ -2,6 +2,11 @@
 {
     public interface ILoggerGeneral
     {
+
+        public int PrioridadLogger { get; set; }
+        public string TipoLogger { get; set; }
+
+
         void Message(string message);
         bool LogDatabase(string message);
         bool LogBalanceDespuesRetiro(int balanceDespuesRetiro);
@@ -19,6 +24,9 @@
 
     public class LoggerGeneral : ILoggerGeneral
     {
+        public int PrioridadLogger { get; set; }
+        public string TipoLogger { get; set; }
+
         public bool LogBalanceDespuesRetiro(int balanceDespuesRetiro)
         {
             if (balanceDespuesRetiro >= 0)
@@ -66,6 +74,9 @@
 
     public class LoggerGeneralFake : ILoggerGeneral
     {
+        public int PrioridadLogger { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string TipoLogger { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public bool LogBalanceDespuesRetiro(int balanceDespuesRetiro)
         {
             //throw new NotImplementedException();

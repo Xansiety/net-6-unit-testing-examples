@@ -51,8 +51,21 @@ namespace TestingLibrary
             loggerGeneralMock.Setup(x => x.MessageConRefParameterReturnBool(ref cliente)).Returns(true);
 
             Assert.IsTrue(loggerGeneralMock.Object.MessageConRefParameterReturnBool(ref cliente));
-             
+
             Assert.IsFalse(loggerGeneralMock.Object.MessageConRefParameterReturnBool(ref clienteNoUsado));
+        }
+
+
+        [Test]
+        public void LogMockingPropiedadPrioridadTipo_DebeRetornarTrue()
+        {
+            var loggerGeneralMock = new Mock<ILoggerGeneral>();
+
+            loggerGeneralMock.Setup(x => x.TipoLogger).Returns("warning");
+            loggerGeneralMock.Setup(x => x.PrioridadLogger).Returns(10);
+
+            Assert.That(loggerGeneralMock.Object.TipoLogger, Is.EqualTo("warning"));
+            Assert.That(loggerGeneralMock.Object.PrioridadLogger, Is.EqualTo(10));
         }
     }
 }
